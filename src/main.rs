@@ -1,12 +1,11 @@
-#![feature(proc_macro_hygiene, decl_macro)]
-
-#[macro_use] extern crate rocket;
-
-#[get("/<name>/<age>")]
-fn index(name: String, age: u8) -> String {
-    format!("Hello, {} year old named {}!", name, age)
-}
+#[macro_use]
+mod dispatch_thread_pool;
+mod mandelbrot;
+mod web_server;
+mod webserver_threadpool;
 
 fn main() {
-    rocket::ignite().mount("/hello", routes![index]).launch();
+    //mandelbrot::test_madelbrot();
+    //dispatch_thread_pool::dispatch_thread_pool_run();
+    web_server::start_listener();
 }
